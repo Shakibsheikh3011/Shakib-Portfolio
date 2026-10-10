@@ -1,0 +1,133 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Great Vibes';
+  src: url('/fonts/GreatVibes-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-script: 'Great Vibes', 'Snell Roundhand', cursive;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-ink: #070708;
+  --color-panel: #101113;
+  --color-line: #26282c;
+  --color-line2: #3a3d42;
+  --color-soft: #f2f2ef;
+  --color-muted: #a8aaaf;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-soft);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: #f2f2ef;
+  color: #070708;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--color-line2);
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-soft);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    color 0.25s,
+    border-color 0.25s,
+    transform 0.25s;
+}
+.pill:hover {
+  border-color: #fff;
+  transform: translateY(-1px);
+}
+.pill-solid {
+  background: var(--color-soft);
+  color: #0a0a0b;
+  border-color: var(--color-soft);
+}
+.pill-solid:hover {
+  background: #fff;
+}
+.pill-sm {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+.pill:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.chip {
+  border: 1px solid var(--color-line2);
+  border-radius: 999px;
+  padding: 7px 15px;
+  font-size: 14px;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+.chip:hover {
+  background: var(--color-soft);
+  color: #0a0a0b;
+  border-color: var(--color-soft);
+}
+
+.card {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  transition:
+    border-color 0.3s,
+    transform 0.3s;
+}
+.card:hover {
+  border-color: var(--color-line2);
+}
