@@ -14,9 +14,9 @@ export const profile = {
   // The public key is meant to be public (it is safe in browser code). If a value is empty or sending
   // fails, the form offers a mailto fallback instead.
   emailjs: {
-    serviceId: '', // e.g. 'service_xxxxxxx'  (Email Services)
-    templateId: '', // e.g. 'template_xxxxxxx' (Email Templates)
-    publicKey: '', // e.g. 'AbCdEf123...'     (Account > General > Public Key)
+    serviceId: 'service_4cu7br2', // e.g. 'service_xxxxxxx'  (Email Services)
+    templateId: 'template_xh8clnq', // e.g. 'template_xxxxxxx' (Email Templates)
+    publicKey: '1_0Nq-Zmle6UWRYKh', // e.g. 'AbCdEf123...'     (Account > General > Public Key)
   },
   // Your photo lives at public/portrait.png (transparent background). Until then a placeholder is shown.
   portrait: '/portrait.png',

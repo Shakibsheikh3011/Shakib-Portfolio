@@ -481,15 +481,23 @@ function Contact() {
     }
     setStatus({ state: 'sending', text: 'Sending…' })
     try {
-      const res = await fetch(profile.formEndpoint, {
+      const { serviceId, templateId, publicKey } = profile.emailjs
+      if (!serviceId || !templateId || !publicKey) throw new Error('EmailJS is not configured')
+      const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: publicKey,
+          template_params: { from_name: name, from_email: email, reply_to: email, message, to_email: profile.email },
+        }),
       })
-      if (!res.ok) throw new Error('request failed')
+      if (!res.ok) throw new Error(`EmailJS ${res.status}: ${await res.text()}`)
       form.reset()
       setStatus({ state: 'ok', text: 'Thanks! Your message was sent.' })
-    } catch {
+    } catch (err) {
+      console.error('Contact form error:', err)
       setStatus({ state: 'error', text: 'Could not send right now.' })
       setFallback(
         `mailto:${profile.email}?subject=${encodeURIComponent(`Portfolio message from ${name}`)}&body=${encodeURIComponent(
